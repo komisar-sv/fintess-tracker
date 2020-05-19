@@ -1,0 +1,60 @@
+#include "Activities.h"
+#include <iostream>
+#include <Windows.h>
+#include <cstdlib>
+#include <vector>
+using namespace std;
+
+int main() {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+
+	RunningFactory rfactory;
+	WalkingFactory wfactory;
+	BicycleFactory bfactory;
+	SwimmingFactory sfactory;
+	ExerciseJymFactory efactory;
+
+	vector<Factory*> factory(5);
+
+	Factory *runningfactory = &rfactory;
+	factory[0] = runningfactory;
+	Factory *walkingfactory = &wfactory;
+	factory[1] = walkingfactory;
+	Factory *bicyclefactory = &bfactory;
+	factory[2] = bicyclefactory;
+	Factory *swimmingfactory = &sfactory;
+	factory[3] = swimmingfactory;
+	Factory *exercisejymfactory = &efactory;
+	factory[4] = exercisejymfactory;
+	
+	vector<MainActivity*> mainact;
+	
+	Function f = f.GetInstance();
+	int a;
+	while (1) {
+		cout << "1.Добавить вид активности" << endl << "2.Поиск активностей по дате" << endl <<
+			"3.Поиск максимального результата" << endl << "4.Сортировка по указаному параметру" << endl;
+		cin >> a;
+		switch (a) {
+		case 1:
+			f.AddActivity(mainact, factory);
+			break;
+		case 2:
+			f.DataResult(mainact);
+			break;
+		case 3:
+			f.GetMaxResult(mainact);
+			break;
+		case 4:
+			cout << "Сортировка по возрастанию по указаному параметру" << endl;
+			f.GetSort(mainact);
+			break;
+		default:
+			break;
+		}
+	}
+
+	getchar();
+	return 0;
+}
